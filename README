@@ -1,7 +1,7 @@
 = What is this?
 
 This is a tiny user interface for StackStockBooks <http://stack.nayutaya.jp/>
-uring web service API.
+using web service API.
 
 = How to use
 
@@ -18,3 +18,4 @@ user is your user name in StackStockBooks and token is your API token.
 * read mumbles
 * post mumbles
 * improve design
+
