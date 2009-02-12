@@ -1,0 +1,23 @@
+<h1>Stack Stock Books</h1>
+
+<p><%= link_to('reload', :action => 'list') %></p>
+<div id="state_tabs" class="ui-tabs">
+  <ul>
+    <%- %w[reading unread wish read].each do |state| -%>
+    <li>
+      <%= link_to(h(state), :action => 'books', :state => state) %>
+    </li>
+    <%- end -%>
+  </ul>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+  $("#state_tabs > ul").tabs({
+    selected: 0,
+    cache: true
+  });
+})();
+//]]>
+</script>

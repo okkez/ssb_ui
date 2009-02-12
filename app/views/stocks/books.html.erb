@@ -1,0 +1,16 @@
+<div class="books">
+  <ul>
+    <%- @stocks.each do |stock| -%>
+    <li class="stock">
+      <%= item(stock) %>
+    </li>
+    <%- end -%>
+  </ul>
+</div>
+
+<script type="text/javascript">
+//<[!CDATA[
+    $("li.stock:nth-child(odd)").css("background-color", "#FFFCD0");
+    $("li.stock:nth-child(even)").css("background-color", "#DEF1FD");
+//]]>
+</script>
