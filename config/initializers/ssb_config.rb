@@ -1,2 +1,7 @@
 # Stack Stock Books API Setting
-SsbConfig = Struct.new(:user, :token).new(YAML.load(File.read("#{RAILS_ROOT/config/ssb.yml}")))
+
+h = YAML.load(File.read("#{RAILS_ROOT}/config/ssb.yml"))
+SsbConfig = Struct.new(:user, :token).new()
+h.each{|k,v|
+  SsbConfig.__send__("#{k}=", v)
+}
