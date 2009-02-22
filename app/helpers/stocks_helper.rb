@@ -22,4 +22,38 @@ module StocksHelper
     links.join(' ')
   end
 
+  def link_to_previous_page
+    url = url_for(:action => 'books',
+                  :state => @state,
+                  :page => @pagination.current_page - 1)
+    update_state_page_function('Prev', url)
+  end
+
+  def link_to_next_page
+    url = url_for(:action => 'books',
+                  :state => @state,
+                  :page => @pagination.current_page + 1)
+    update_state_page_function('Next', url)
+  end
+
+  def link_to_page(num)
+    if @pagination.current_page == num
+      num.to_s
+    else
+      url = url_for(:action => 'books',
+                    :state => @state,
+                    :page => num)
+      update_state_page_function(num.to_s, url)
+    end
+  end
+
+  def update_state_page_function(name, url)
+    link_to_function(name, <<-JS)
+$.post('#{url}',
+       { authenticity_token: window._token },
+       function(data, status){
+         $('##{@state}').hide().html(data).fadeIn(600);
+       }, 'html');
+    JS
+  end
 end

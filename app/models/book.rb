@@ -46,7 +46,7 @@ class Book < ActiveResource::Base
   def self.find_stocks_by_user_and_state(options, params = {})
     self.find(:one,
               :from => "/api/user/#{options[:user_id_type]}/#{options[:user_id]}/stocks/#{options[:state]}.json",
-              :params => params).response
+              :params => params)
   end
 
   # @return Book

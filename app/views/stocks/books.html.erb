@@ -1,3 +1,4 @@
+<div id="<%= @state %>">
 <div class="books">
   <ul>
     <%- @stocks.each do |stock| -%>
@@ -8,9 +9,22 @@
   </ul>
 </div>
 
+<p>
+  <%- if @pagination.has_previous_page -%>
+  <%= link_to_previous_page %> |
+  <%- end -%>
+  <%- @pagination.total_pages.times do |num| -%>
+  <%= link_to_page(num+1) %>
+  <%- end -%>
+  <%- if @pagination.has_next_page -%>
+  | <%= link_to_next_page %>
+  <%- end -%>
+</p>
+
 <script type="text/javascript">
 //<[!CDATA[
-    $("li.stock:nth-child(odd)").css("background-color", "#FFFCD0");
-    $("li.stock:nth-child(even)").css("background-color", "#DEF1FD");
+$("li.stock:nth-child(odd)").css("background-color", "#FFFCD0");
+$("li.stock:nth-child(even)").css("background-color", "#DEF1FD");
 //]]>
 </script>
+</div>

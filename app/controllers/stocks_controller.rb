@@ -13,10 +13,18 @@ class StocksController < ApplicationController
 
   def books
     @state = params[:state]
-    @book = Book.find_stocks_by_user_and_state({ :user_id_type => 'name',
-                                                 :user_id => SsbConfig.user,
-                                                 :state => @state },
-                                               { :include_books => true })
+    @page = params[:page].blank? ? 1 : params[:page]
+    @response = Book.find_stocks_by_user_and_state({
+                                                     :user_id_type => 'name',
+                                                     :user_id => SsbConfig.user,
+                                                     :state => @state,
+                                                   },
+                                                   {
+                                                     :include_books => true,
+                                                     :page => @page,
+                                                   })
+    @book = @response.response
+    @pagination = @response.pagination
     @stocks = @book.stocks
     respond_to do |format|
       format.html
